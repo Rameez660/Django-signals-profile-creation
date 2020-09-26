@@ -1,0 +1,18 @@
+<u><h1>Profile of {{request.user.username}}</h1></u>
+<img src="{{profile.image.url}}" height="300px" width="300px" />
+<h3>bio : {{profile.bio}}</h3>
+<h1>Name : {{profile.user.username}}</h1>
+<h1>Age : {{profile.age}}</h1>
+<h1>Education : {{profile.education}}</h1>
+<h1>Address:{{profile.address}}</h1><br><br><br>
+
+{% for d in description %}
+<h1><u>Our Description</u></h1>
+<h1>{{d.description.title}}</h1>
+<h1>{{d.description.desc}}</h1>
+<h1>{{d.description.user.user}}</h1>
+<br><br>
+{% endfor %}
+
+
+<a href="{% url 'edit' %}"><button>Edit Profile</button></a>

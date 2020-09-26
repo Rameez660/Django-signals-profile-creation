@@ -1,0 +1,11 @@
+{% if request.user.is_authenticated %}
+<h1>Welcome {{request.user.username}}</h1>
+<a href="{% url 'profile' %}"><button>View Profile</button></a>
+<a href="{% url 'logout' %}"><button>Logout</button></a>
+{% else %}
+<h1>Please Login First To See Your Profile</h1>
+<a href="{% url 'login' %}"><button>Login</button></a>
+<h1>Not have an account ? </h1>
+<a href="{% url 'signup' %}"><button>Sign Up</button></a>
+
+{% endif %}
