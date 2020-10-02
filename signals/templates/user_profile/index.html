@@ -10,12 +10,14 @@
 
 {% endif %}
 
-<h1 align="center">Post</h1>
+<h1 align="center">All Profile Post</h1>
 {% for d in descriptions %}
-<div style="border:5px solid black">
+<div style="border:5px solid black;margin-bottom:5px;">
 <h1><u>Our Description</u></h1>
-<h1>{{d.title}}</h1>
-<h1>{{d.desc}}</h1>
+<img width="100px" height="50px" src="/media/{{d.user.image}}" alt=""><a href="{% url 'Userprofile'  d.user.id %}"><h1>{{d.user.user}}</h1></a>
+
+<h1>Title: {{d.title}}</h1>
+<h1>Description: {{d.desc}}</h1>
 <br><br>
 </div>
 {% endfor %}

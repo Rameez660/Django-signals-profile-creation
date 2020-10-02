@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
   user=models.OneToOneField(User,on_delete=models.CASCADE)
               # ForeignKey
-  bio=models.TextField(max_length=50,null=True)
-  age=models.IntegerField(null=True)
-  education=models.CharField(max_length=20,null=True)
-  address=models.CharField(max_length=50,null=True)
-  image=models.ImageField(upload_to='media/',default='user_profile/profile.jpg')
+  bio=models.TextField(max_length=50,default='Your Bio')
+  age=models.IntegerField(default='00')
+  education=models.CharField(max_length=20, default='Your Education')
+  address=models.CharField(max_length=50, default='Your Address')
+  image=models.ImageField(upload_to='media/',default='profile.jpg')
   def __str__(self):
     return self.user.username+" profile "
 

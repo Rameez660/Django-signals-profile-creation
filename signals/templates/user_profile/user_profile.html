@@ -1,0 +1,10 @@
+<div class="">
+<img src="/media/{{ user.image }}" height="220px" width="200px"/>
+<h1>{{user.user}} Profile Post</h1>
+</div>
+{% for desc in description %}
+<div class="" style="border:5px solid black;margin-bottom:5px;">
+<h1>Title: {{desc.description.title }}</h1>
+<h1>Description: {{desc.description.desc }}</h1>
+</div>
+{% endfor %}

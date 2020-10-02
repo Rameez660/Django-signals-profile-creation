@@ -12,15 +12,16 @@
 <h1>Name : {{profile.user.username}}</h1>
 <h1>Age : {{profile.age}}</h1>
 <h1>Education : {{profile.education}}</h1>
-<h1>Address:{{profile.address}}</h1><br><br><br>
+<h1>Address: {{profile.address}}</h1><br><br><br>
 
-<h1 align="center">Post</h1>
+<h1 align="center">{{request.user.username}} Profile Post</h1>
 {% for d in description %}
-<div style="border:5px solid black">
+<div style="border:5px solid black;margin-bottom:5px;">
 <h1><u>Our Description</u></h1>
-<h1>{{d.description.title}}</h1>
-<h1>{{d.description.desc}}</h1>
-<h1>{{d.description.user.user}}</h1>
+<img width="100px" height="50px" src="/media/{{d.description.user.image}}" alt=""><a href="{% url 'Userprofile'  d.description.user.id %}"><h1>{{d.description.user.user}}</h1></a>
+
+<h1>Title: {{d.description.title}}</h1>
+<h1>Description: {{d.description.desc}}</h1>
 <br><br>
 </div>
 {% endfor %}
