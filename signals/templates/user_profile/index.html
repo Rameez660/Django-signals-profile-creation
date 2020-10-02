@@ -9,3 +9,20 @@
 <a href="{% url 'signup' %}"><button>Sign Up</button></a>
 
 {% endif %}
+
+<h1 align="center">Post</h1>
+{% for d in descriptions %}
+<div style="border:5px solid black">
+<h1><u>Our Description</u></h1>
+<h1>{{d.title}}</h1>
+<h1>{{d.desc}}</h1>
+<br><br>
+</div>
+{% endfor %}
+
+<a href="{% url 'home' %}">home</a>
+<a href="{% url 'profile' %}">profile</a>
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'signup' %}">signup</a>
+<a href="{% url 'edit' %}">edit</a>
+<a href="{% url 'desc' %}">desc</a>

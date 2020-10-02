@@ -4,13 +4,16 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile,Description
 from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProfileForm
+from .forms import ProfileForm,DescriptionForm
 from django.contrib.auth.models import User
 # Create your views here.
 
 def home(request):
-  
-  return render(request,'user_profile/index.html')
+  descriptions=Description.objects.all()
+  user=User.objects.get(id=request.user.id)
+  if not Profile.objects.filter(user=user):
+      Profile.objects.create(user=user)
+  return render(request,'user_profile/index.html',{'descriptions':descriptions})
 
 @login_required(login_url='/')
 def profile(request):
@@ -65,11 +68,13 @@ def signup(request):
 @login_required(login_url='/login')
 def log_out(request):
   logout(request)
-  return redirect('/')
-
+  return redirect('signup')
+                    # / 
 @login_required(login_url='/login')
 def edit(request):
   user=Profile.objects.get(user=request.user)
+
+
   if request.method=='GET':
     form=ProfileForm(instance=user)
     context={
@@ -83,3 +88,25 @@ def edit(request):
       return redirect('/profile')
     else:
       return HttpResponse('not changed the profile')  
+
+
+@login_required(login_url='/login')
+def desc(request):
+  profile=Profile.objects.get(user=request.user)
+  descriptions=Description.objects.create(user=profile)
+  
+  if request.method=='POST':
+    form=DescriptionForm(request.POST,instance=descriptions)
+                                   # request.FILES,
+    if form.is_valid():
+      form.save()
+      return redirect('desc')
+    else:
+      return HttpResponse('wrong info')
+
+  if request.method=='GET':
+    form=DescriptionForm(instance=descriptions)
+    context={
+      'form':form,
+    }
+  return render(request,'user_profile/desc.html',context)

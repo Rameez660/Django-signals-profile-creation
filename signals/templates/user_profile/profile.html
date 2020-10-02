@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <u><h1>Profile of {{request.user.username}}</h1></u>
 <img src="{{profile.image.url}}" height="300px" width="300px" />
 <h3>bio : {{profile.bio}}</h3>
@@ -6,13 +14,24 @@
 <h1>Education : {{profile.education}}</h1>
 <h1>Address:{{profile.address}}</h1><br><br><br>
 
+<h1 align="center">Post</h1>
 {% for d in description %}
+<div style="border:5px solid black">
 <h1><u>Our Description</u></h1>
 <h1>{{d.description.title}}</h1>
 <h1>{{d.description.desc}}</h1>
 <h1>{{d.description.user.user}}</h1>
 <br><br>
+</div>
 {% endfor %}
 
-
 <a href="{% url 'edit' %}"><button>Edit Profile</button></a>
+<a href="{% url 'home' %}">home</a>
+<a href="{% url 'profile' %}">profile</a>
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'signup' %}">signup</a>
+<a href="{% url 'edit' %}">edit</a>
+<a href="{% url 'desc' %}">desc</a>
+
+</body>
+</html>

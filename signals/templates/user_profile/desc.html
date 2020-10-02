@@ -1,5 +1,6 @@
-<form method="POST" action="{% url 'edit' %}" enctype="multipart/form-data">
+<form method="POST" action="{% url 'desc' %}">
   {% csrf_token %}
+ <!--
    <div class="form-group">
 <label>Bio:</label> <textarea name="bio" cols="40" rows="10" required id="bio"></textarea>
   </div>
@@ -17,11 +18,12 @@ Change:
 <input type="file" name="image" id="image" />
   </div>
   <button type="submit">Submit</button>
-
-
- <!--
-    {{form.as_p}}
 -->
+
+
+    {{form}}
+  <button type="submit">Submit</button>
+
 </form>
 <a href="{% url 'home' %}">home</a>
 <a href="{% url 'profile' %}">profile</a>

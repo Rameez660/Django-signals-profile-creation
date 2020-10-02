@@ -14,6 +14,8 @@ class Profile(models.Model):
     return self.user.username+" profile "
 
 class Description(models.Model):
+    user=models.ForeignKey(Profile,on_delete=models.CASCADE)
+                
     title=models.CharField(max_length=10000)
     desc=models.CharField(max_length=10000)
 
@@ -21,6 +23,6 @@ class Description(models.Model):
     # date=models.DateTimeField(auto_now_add=True)
     # thumbnail=models.ImageField(upload_to='media/')
     # video=models.FileField(upload_to='media/')
-    user=models.ForeignKey(Profile,on_delete=models.CASCADE)
+
     def __str__(self):
         return self.title
