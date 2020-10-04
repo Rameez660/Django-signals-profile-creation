@@ -12,7 +12,9 @@
 <h1>Name : {{profile.user.username}}</h1>
 <h1>Age : {{profile.age}}</h1>
 <h1>Education : {{profile.education}}</h1>
-<h1>Address: {{profile.address}}</h1><br><br><br>
+<h1>Address: {{profile.address}}</h1>
+<a href="{% url 'edit' %}"><button>Edit Profile</button></a>
+<br><br><br>
 
 <h1 align="center">{{request.user.username}} Profile Post</h1>
 {% for d in description %}
@@ -22,11 +24,12 @@
 
 <h1>Title: {{d.description.title}}</h1>
 <h1>Description: {{d.description.desc}}</h1>
+<a href="/products/{{ d.description.id }}"><button>Product View</button></a>
+
 <br><br>
 </div>
 {% endfor %}
 
-<a href="{% url 'edit' %}"><button>Edit Profile</button></a>
 <a href="{% url 'home' %}">home</a>
 <a href="{% url 'profile' %}">profile</a>
 <a href="{% url 'login' %}">login</a>

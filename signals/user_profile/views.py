@@ -65,25 +65,55 @@ def edit(request):
 def desc(request):
   profile=Profile.objects.get(user=request.user)
   descriptions=Description.objects.create(user=profile)
-  
+  form=DescriptionForm(request.POST or None, request.FILES or None,instance=descriptions)  
+
   if request.method=='POST':
-    form=DescriptionForm(request.POST,instance=descriptions)
-                                   # request.FILES,
+    
     if form.is_valid():
       form.save()
+      form_save = form.save(commit = False)
+      form_save.save(force_insert = True) 
       return redirect('desc')
     else:
       return HttpResponse('wrong info')
 
-  if request.method=='GET':
-    form=DescriptionForm(instance=descriptions)
-    context={
-      'form':form,
-    }
+  # if request.method=='GET':
+  #   form=DescriptionForm(instance=descriptions)
+
+  context={'form':form,}
   
   return render(request,'user_profile/desc.html',context)
 
+@login_required(login_url='/login/')
+def productView(request, myid):
 
+  # Fetch the product using the id
+  product = Description.objects.get(id=myid)
+  # product = Description.objects.filter(id=myid)
+
+  # For deleting post
+  if request.method == 'POST':
+    product.delete()
+    return redirect('profile')
+
+  return render(request, 'user_profile/prodView.html', {'product':product})
+                                                                # product[0]
+
+@login_required(login_url='/login/')
+def productUpdate(request, myid):
+  # For updating post
+  product = Description.objects.get(id=myid)
+
+  form = DescriptionForm(instance=product)
+
+  if request.method == 'POST':
+    form = DescriptionForm(request.POST, instance=product)
+    if form.is_valid():
+      form.save()
+      return redirect('ProductView',myid=myid)
+
+  context = {'form':form}
+  return render(request, 'user_profile/productUpdate.html', context)
 
 @login_required(login_url='/login/')
 def Userprofile(request,pk):

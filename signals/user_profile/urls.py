@@ -11,4 +11,8 @@ urlpatterns = [
     path('edit/',views.edit,name='edit'),
     path('desc/',views.desc,name='desc'),
     path('user/<int:pk>/', views.Userprofile, name='Userprofile'),
+    path("products/<int:myid>", views.productView, name="ProductView"),
+    path("products/update/<int:myid>", views.productUpdate, name="productUpdate"),
+
+
    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

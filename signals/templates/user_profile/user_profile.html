@@ -3,8 +3,21 @@
 <h1>{{user.user}} Profile Post</h1>
 </div>
 {% for desc in description %}
+
 <div class="" style="border:5px solid black;margin-bottom:5px;">
 <h1>Title: {{desc.description.title }}</h1>
 <h1>Description: {{desc.description.desc }}</h1>
+<a href="/products/{{ desc.description.id }}"><button id="qv{{i.id}}" class="btn btn-primary cart">Product View</button></a>
+    <!--/products/{{d.id}}-->
+
 </div>
+
 {% endfor %}
+
+<a href="{% url 'home' %}">home</a>
+<a href="{% url 'profile' %}">profile</a>
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'signup' %}">signup</a>
+<a href="{% url 'edit' %}">edit</a>
+<a href="{% url 'desc' %}">desc</a>
+  
