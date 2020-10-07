@@ -26,3 +26,16 @@ class Description(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Commment(models.Model):
+    comment_text=models.TextField(max_length=200)
+    # date=models.DateTimeField(auto_now_add=True)
+    description=models.ForeignKey(Description,on_delete=models.CASCADE)
+    profile=models.ForeignKey(Profile,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment_text
+    class Meta:
+        verbose_name='Comment'
+        verbose_name_plural='Comments'

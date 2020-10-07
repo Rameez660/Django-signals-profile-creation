@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-<form method="POST" action="{% url 'desc' %}">
+<form method="POST" action="{% url 'comment' %}">
   {% csrf_token %}
  <!--
    <div class="form-group">
@@ -28,17 +20,11 @@ Change:
   <button type="submit">Submit</button>
 -->
 
-
-    {{form.as_p}}
-  <button name="desc_submit" type="submit">Submit</button>
+                <form action="{% url 'comment' %}" method="POST" class='ui fluid form'>
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" >
+                    {{ c_form }}
+                    <button type="submit" name="comment_submit" class="ui primary button mt-5 w-full">Send</button>
+                </form>
 
 </form>
-<a href="{% url 'home' %}">home</a>
-<a href="{% url 'profile' %}">profile</a>
-<a href="{% url 'login' %}">login</a>
-<a href="{% url 'signup' %}">signup</a>
-<a href="{% url 'edit' %}">edit</a>
-<a href="{% url 'desc' %}">desc</a>
-  
-</body>
-</html>

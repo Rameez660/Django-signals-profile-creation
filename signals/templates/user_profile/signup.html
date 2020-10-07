@@ -1,8 +1,11 @@
 <h1>Sign Up</h1>
 <form method="POST" action="{% url 'signup' %}">
   {% csrf_token %}
-  {{form.as_p}}
+  Username: {{form.username}} <br><br>
+  Password: {{form.password1}}<br><br>
+  Comfirm Password: {{form.password2}}<br><br>
   <button type="submit">Submit</button>
+  <!--{{form.as_p}}-->
 </form>
 <a href="{% url 'home' %}">home</a>
 <a href="{% url 'profile' %}">profile</a>
